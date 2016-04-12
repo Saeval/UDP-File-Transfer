@@ -27,11 +27,11 @@ public class UDPServer {
     private String fileToSend = "";
     private File myFile = null;
 	
-	public UDPServer(){		
+	public UDPServer(String DestinationAddress){		
 		
 		try {
 //			serverSocket = new DatagramSocket(SOURCE_PORT);
-			serverSocket = new DatagramSocket(SOURCE_PORT, InetAddress.getByName("10.80.5.3"));
+			serverSocket = new DatagramSocket(SOURCE_PORT, InetAddress.getByName(DestinationAddress));
 		} catch (SocketException e) {
 			System.err.println("Couldn't create serverSocket");
 			e.printStackTrace();
@@ -78,7 +78,8 @@ public class UDPServer {
 										IPAddress, DESTINATION_PORT);
 			serverSocket.send(sendPacket);
 
-//			Thread.sleep(100);
+			Thread.sleep(1);
+//			Thread.sleep(0, 10 * 1000);
 		}
 		
 		return true;
@@ -108,5 +109,6 @@ public class UDPServer {
 	public BufferedInputStream getBis() {
 		return bis;
 	}
+	
 
 }
